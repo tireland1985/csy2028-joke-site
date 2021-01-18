@@ -5,14 +5,15 @@ $pdo = new PDO('mysql:host=localhost;dbname=ijdb;charset=utf8', 'student', 'stud
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $sql = 'SELECT * FROM `joke`';
-$result = $pdo->query($sql);
-
+$result = $pdo->prepare($sql);
+$result->execute();
+/*
 while ($row = $result->fetch()) {
    $jokes[] = $row['joketext'];
-}
+}*/
 
 $title = 'Joke list';
-
+/*
 $output = '';
 foreach($jokes as $joke) {
 	$output = $output . '<blockquote>';
@@ -20,4 +21,9 @@ foreach($jokes as $joke) {
 	$output = $output . '</blockquote>';
 }
 
-require  '../templates/layout.html.php';
+require  '../templates/layout.html.php'; */
+ob_start();
+require '../templates/list.html.php';
+$output = ob_get_clean();
+
+require '../templates/layout.html.php';

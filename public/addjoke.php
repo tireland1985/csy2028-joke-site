@@ -18,13 +18,19 @@ if (isset($_POST['joketext'])) {
 
 }
 else {
-	$title = 'Add a new joke';
+/*	$title = 'Add a new joke';
 
 	$output = '<form action="" method="post">
 		<label for="joketext">Type your joke here:</label>
 		<textarea id="joketext" name="joketext" rows="3" cols="40"></textarea>
 		<input type="submit" value="Add">
-	</form>';
+	</form>';*/
+
+	ob_start();
+	require '../templates/addjoke.html.php';
+	$output = ob_get_clean();
+
+	$title = 'Add a new Joke';
 }
 
 require  '../templates/layout.html.php';
