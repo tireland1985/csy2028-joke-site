@@ -12,7 +12,7 @@ while ($row = $result->fetch()) {
    $jokes[] = $row['joketext'];
 }*/
 
-$title = 'Joke list';
+//$title = 'Joke list';
 /*
 $output = '';
 foreach($jokes as $joke) {
@@ -22,8 +22,20 @@ foreach($jokes as $joke) {
 }
 
 require  '../templates/layout.html.php'; */
-ob_start();
+/*ob_start();
 require '../templates/list.html.php';
 $output = ob_get_clean();
+
+require '../templates/layout.html.php';*/
+
+require '../loadTemplate.php';
+
+$title = 'Joke list';
+
+$templateVars = [
+	'result' => $result
+];
+
+$output = loadTemplate('../templates/list.html.php', $templateVars);
 
 require '../templates/layout.html.php';

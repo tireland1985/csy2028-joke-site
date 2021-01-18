@@ -1,5 +1,5 @@
 <?php
-
+/*
 $title = 'Internet Joke Database';
 
 //$output = '<h2>Internet Joke Database</h2>
@@ -13,4 +13,9 @@ require '../templates/home.html.php';
 
 $output = ob_get_clean();
 
+require '../templates/layout.html.php'; */
+require '../loadTemplate.php';
+$title = 'Internet Joke Database';
+
+$output = loadTemplate('../templates/home.html.php', []);
 require '../templates/layout.html.php';
