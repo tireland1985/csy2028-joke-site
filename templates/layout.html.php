@@ -22,7 +22,7 @@
   </main>
 
   <footer>
-  &copy; IJDB 2018
+  &copy; IJDB <?=date('Y');?>
   </footer>
   </body>
 </html>

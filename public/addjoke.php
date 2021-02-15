@@ -1,61 +1,26 @@
 <?php
-/*if (isset($_POST['joketext'])) {
 
-	$pdo = new PDO('mysql:host=localhost;dbname=ijdb;charset=utf8', 'student', 'student');
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+require '../loadTemplate.php';
+require '../functions.php';
+
+if (isset($_POST['joketext'])) {
+
+	require '../database.php';
 
 	$date = new DateTime();
-
-	$sql = 'INSERT INTO `joke` (joketext,jokedate) VALUES (:joketext, :jokedate)';
-
-	$stmt = $pdo->prepare($sql);
-
-	$stmt->execute(['joketext' => $_POST['joketext'], 'jokedate' => $date->format('Y-m-d H:i:s')]);
+	$joke = [
+		'joketext' => $_POST['joketext'],
+		'jokedate' => $date->format('Y-m-d H:i:s')
+	];
+	insertJoke($pdo, $joke);
 
 	header('location: jokes.php');
 
-
-
-}
-else {
-	$title = 'Add a new joke';
-
-	$output = '<form action="" method="post">
-		<label for="joketext">Type your joke here:</label>
-		<textarea id="joketext" name="joketext" rows="3" cols="40"></textarea>
-		<input type="submit" value="Add">
-	</form>';
-
-	ob_start();
-	require '../templates/addjoke.html.php';
-	$output = ob_get_clean();
-
-	$title = 'Add a new Joke';
-}
-
-require  '../templates/layout.html.php'; */
-require '../loadTemplate.php';
-if (isset($_POST['joketext'])){
-	$pdo = new PDO('mysql:host=localhost;dbname=ijdb;charset=utf8', 'student', 'student', [PDO::ATTR_ERRMODE =>
-		PDO::ERRMODE_EXCEPTION]);
-
-		$date = new DateTime();
-
-		$sql = 'INSERT INTO joke (joketext, jokedate) VALUES (:joketext, :jokedate)';
-
-		$stmt = $pdo->prepare($sql);
-
-		$values = [
-			'joketext' => $_POST['joketext'],
-			'jokedate' => $date->format('Y-m-d H:i:s')
-		];
-		$stmt->execute($values);
-
-		header('location: jokes.php');
 }
 else {
 	$output = loadTemplate('../templates/addjoke.html.php', []);
 
-	$title = 'Add a new Joke';
+	$title = 'Add a new joke';
 }
-require '../templates/layout.html.php';
+
+require  '../templates/layout.html.php';
