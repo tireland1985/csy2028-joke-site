@@ -3,13 +3,7 @@ require '../loadTemplate.php';
 require '../functions.php';
 require '../database.php';
 
-$sql = 'SELECT * FROM joke';
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-
-$jokes = $stmt->fetchAll();
-
-$jokes;
+$jokes = findAll($pdo, 'joke');
 $title = 'Joke list';
 
 $templateVars = ['jokes' => $jokes];
