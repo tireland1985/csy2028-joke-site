@@ -1,5 +1,5 @@
 <?php
-
+// no longer used as of ex 2 from topic 14 - 22/02/21
 require '../loadTemplate.php';
 require '../functions.php';
 
