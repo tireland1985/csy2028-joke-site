@@ -10,7 +10,7 @@ if (isset($_POST['joketext'])) {
 		'id' => $_POST['id']
 	];
 
-	update($pdo, 'joke',  $joke, 'id', $_POST['id']);
+	save($pdo, 'joke',  $joke, 'id');
 
 	header('location: jokes.php');
 }

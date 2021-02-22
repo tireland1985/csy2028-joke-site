@@ -67,9 +67,20 @@ function update($pdo, $table, $record, $primaryKey){
 }
 
 function delete($pdo, $table, $field, $value){
-    $stmt = $pdo->prepare('DELETE FROM ' . $table . 'WHERE ' . $field . ' = :value');
-    $data = [
+    $stmt = $pdo->prepare('DELETE FROM ' . $table . ' WHERE ' . $field . ' = :value');
+    $values = [
         'value' => $value
     ];
-    $stmt->execute($data);
+    $stmt->execute($values);
+}
+
+function save($pdo, $table, $record, $primaryKey) {
+    // combine insert & update functions using try/catch
+    // this will always run the insert function, if that fails (record exists) then it will run the update function
+    try {
+        insert($pdo, $table, $record);
+    }
+    catch (Exception $e) {
+        update($pdo, $table, $record, $primaryKey);
+    }
 }

@@ -13,7 +13,7 @@ if (isset($_POST['joketext'])) {
 		'jokedate' => $date->format('Y-m-d H:i:s')
 	];
 	// insert using $pdo to 'joke' table using data from $joke
-	insert($pdo, 'joke', $joke);
+	save($pdo, 'joke', $joke, 'id');
 
 	header('location: jokes.php');
 
