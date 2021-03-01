@@ -1,7 +1,9 @@
 <?php
 require '../database.php';
-require '../functions.php';
+require '../DatabaseTable.php';
 
-delete($pdo, 'joke', 'id', $_POST['id']);
+$jokesTable = new DatabaseTable($pdo, 'joke', 'id');
+
+$jokesTable->delete($_POST['id']);
 
 header('location: jokes.php');

@@ -1,9 +1,11 @@
 <?php
 require '../loadTemplate.php';
-require '../functions.php';
+require '../DatabaseTable.php';
 require '../database.php';
 
-$jokes = findAll($pdo, 'joke');
+$jokesTable = new DatabaseTable($pdo, 'joke', 'id');
+
+$jokes = $jokesTable->findAll();
 $title = 'Joke list';
 
 $templateVars = ['jokes' => $jokes];
