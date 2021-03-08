@@ -1,14 +1,16 @@
 <?php
-require '../loadTemplate.php';
+require '../functions/loadTemplate.php';
 require '../database.php';
-require '../DatabaseTable.php';
+require '../classes/DatabaseTable.php';
 
-$title = 'Internet Joke Database';
-
-//instantiate the class with $pdo, table name, and primary key column
+// invoke DatabaseTable class with the db connection, table name, and primary key column
 $jokesTable = new DatabaseTable($pdo, 'joke', 'id');
 
-$joke = $jokesTable->find('id', 1);
-$output = loadTemplate('../templates/home.html.php', ['joke' => $joke[0]]);
-
+//setup single point of entry for all pages (ex. index.php?page=jokes)
+if (isset($_GET['page'])){
+    require '../pages/' . $_GET['page'] . '.php';
+}
+else { // if 'page' is not set, load home page
+    require '../pages/home.php';
+}
 require  '../templates/layout.html.php';
