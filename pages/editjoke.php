@@ -1,11 +1,5 @@
 <?php
 
-require '../loadTemplate.php';
-require '../database.php';
-require '../DatabaseTable.php';
-
-$jokesTable = new DatabaseTable($pdo, 'joke', 'id');
-
 if (isset($_POST['joke'])) {
 	$date = new DateTime();
 
@@ -14,7 +8,7 @@ if (isset($_POST['joke'])) {
 	
 	$jokesTable->save($joke);
 
-	header('location: jokes.php');
+	header('location: index.php?page=jokes');
 }
 else {
 
@@ -25,15 +19,8 @@ else {
 	else { 
 		$joke = false;
 	}
-/*	$jokes = find($pdo, 'joke', 'id', $_GET['id']);
-	$templateVars = [
-		'joke' => $jokes[0]
-	];
-	$output = loadTemplate('../templates/editjoke.html.php', $templateVars);
-	*/
+
 	$output = loadTemplate('../templates/editjoke.html.php', ['joke' => $joke]);
 	$title = 'Edit joke';
 
 }
-
-require  '../templates/layout.html.php';
