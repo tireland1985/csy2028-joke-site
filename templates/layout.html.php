@@ -11,9 +11,9 @@
       <h1>Internet Joke Database</h1>
     </header>
     <ul>
-      <li><a href="index.php">Home</a></li>
-      <li><a href="index.php?page=jokes">Jokes List</a></li>
-      <li><a href="index.php?page=editjoke">Add a new Joke</a></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/jokes">Jokes List</a></li>
+      <li><a href="/editjoke">Add a new Joke</a></li>
     </ul>
   </nav>
 

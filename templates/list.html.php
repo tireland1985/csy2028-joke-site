@@ -2,9 +2,9 @@
 <blockquote>
 <p>
 	<?=$joke['joketext']?> 
-	<a href="index.php?page=editjoke&id=<?=$joke['id']?>">edit</a>
+	<a href="/editjoke?id=<?=$joke['id']?>">edit</a>
 
-	<form action="index.php?page=deletejoke" method="POST">
+	<form action="/deletejoke" method="POST">
 	<input type="hidden" name="id" value="<?=$joke['id'];?>" />
 	<input type="submit" name="submit" value="Delete" >
 	</form>

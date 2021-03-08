@@ -6,9 +6,10 @@ require '../classes/DatabaseTable.php';
 // invoke DatabaseTable class with the db connection, table name, and primary key column
 $jokesTable = new DatabaseTable($pdo, 'joke', 'id');
 
-//setup single point of entry for all pages (ex. index.php?page=jokes)
-if (isset($_GET['page'])){
-    require '../pages/' . $_GET['page'] . '.php';
+//ex1: setup single point of entry for all pages (ex. index.php?page=jokes)
+//ex2: URL rewriting
+if ($_SERVER['REQUEST_URI'] !== '/'){
+    require '../pages/' . ltrim(explode('?', $_SERVER['REQUEST_URI'])[0], '/') . '.php';
 }
 else { // if 'page' is not set, load home page
     require '../pages/home.php';
