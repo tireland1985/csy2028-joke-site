@@ -20,7 +20,7 @@ class JokeController {
     public function delete(){
         $this->jokesTable->delete($_POST['id']);
 
-        header('location: /list');
+        header('location: /joke/list');
     }
 
     public function home(){
@@ -42,7 +42,7 @@ class JokeController {
 	
             $this->jokesTable->save($joke);
         
-            header('location: /list');
+            header('location: /joke/list');
         }
         else {
         
