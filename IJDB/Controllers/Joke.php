@@ -7,33 +7,6 @@ class Joke {
         $this->jokesTable = $jokesTable;
     }
 
-    public function list(){
-        $jokes = $this->jokesTable->findAll();
-
-        return ['template' => 'list.html.php',
-                'title' => 'Joke List',
-                'variables' => [
-                    'jokes' => $jokes
-                ]
-                ];
-    }
-
-    public function delete(){
-        $this->jokesTable->delete($_POST['id']);
-
-        header('location: /joke/list');
-    }
-
-    public function home(){
-        $joke = $this->jokesTable->find('id', 1);
-
-        return [
-            'template' => 'home.html.php',
-            'title' => 'Internet Joke Database',
-            'variables' => ['joke' => $joke[0]]
-        ];
-    }
-
     public function edit(){
         if (isset($_POST['joke'])) {
             $date = new \DateTime();
@@ -61,4 +34,33 @@ class Joke {
             ];
         }
     }
+    
+    public function list(){
+        $jokes = $this->jokesTable->findAll();
+
+        return ['template' => 'list.html.php',
+                'title' => 'Joke List',
+                'variables' => [
+                    'jokes' => $jokes
+                ]
+                ];
+    }
+
+    public function delete(){
+        $this->jokesTable->delete($_POST['id']);
+
+        header('location: /joke/list');
+    }
+
+    public function home(){
+        $joke = $this->jokesTable->find('id', 1);
+
+        return [
+            'template' => 'home.html.php',
+            'title' => 'Internet Joke Database',
+            'variables' => ['joke' => $joke[0]]
+        ];
+    }
+
+
 }
