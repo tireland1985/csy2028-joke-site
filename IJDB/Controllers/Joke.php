@@ -1,5 +1,6 @@
 <?php
-class JokeController {
+namespace IJDB\Controllers;
+class Joke {
     private $jokesTable;
 
     public function __construct($jokesTable){
@@ -35,7 +36,7 @@ class JokeController {
 
     public function edit(){
         if (isset($_POST['joke'])) {
-            $date = new DateTime();
+            $date = new \DateTime();
 
             $joke = $_POST['joke'];
             $joke['jokedate'] = $date->format('Y-m-d H:i:s');

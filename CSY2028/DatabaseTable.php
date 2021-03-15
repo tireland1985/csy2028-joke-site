@@ -1,4 +1,5 @@
 <?php
+namespace CSY2028;
 class DatabaseTable {
     private $pdo;
     private $table;
