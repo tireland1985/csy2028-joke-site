@@ -41,25 +41,6 @@ class DatabaseTable {
         $stmt->execute($record);
     }
 
-    public function save($record) {
-        // combine insert & update functions using try/catch
-        // this will always run the insert function, if that fails (record exists) then it will run the update function
-        try {
-            $this->insert($record);
-        }
-        catch (Exception $e) {
-            $this->update($record);
-        }
-    }
-
-    public function delete($id){
-        $stmt = $this->pdo->prepare('DELETE FROM ' . $this->table . ' WHERE ' . $this->primaryKey . ' = :id');
-        $values = [
-            'id' => $id
-        ];
-        $stmt->execute($values);
-    }
-
     public function update($record){
         $query = 'UPDATE ' . $this->table . ' SET ';
     
@@ -76,4 +57,24 @@ class DatabaseTable {
         $stmt = $this->pdo->prepare($query);
         $stmt->execute($record);
     }
+    
+    public function save($record) {
+        // combine insert & update functions using try/catch
+        // this will always run the insert function, if that fails (record exists) then it will run the update function
+        try {
+            $this->insert($record);
+        }
+        catch (\Exception $e) {
+            $this->update($record);
+        }
+    }
+
+    public function delete($id){
+        $stmt = $this->pdo->prepare('DELETE FROM ' . $this->table . ' WHERE ' . $this->primaryKey . ' = :id');
+        $values = [
+            'id' => $id
+        ];
+        $stmt->execute($values);
+    }
+
 }
